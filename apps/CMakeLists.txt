@@ -1,0 +1,5 @@
+add_subdirectory(calendar)
+add_subdirectory(courses)
+add_subdirectory(inbox)
+add_subdirectory(latestnews)
+add_subdirectory(webradio)

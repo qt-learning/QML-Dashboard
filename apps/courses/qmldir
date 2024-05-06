@@ -1,0 +1,7 @@
+module courses
+Main 1.0 Main.qml
+HintCard 1.0 controls/HintCard.qml
+CircularBar 1.0 controls/CircularBar.qml
+CourseProgressPanel 1.0 panels/CourseProgressPanel.qml
+WeeklyActivityPanel 1.0 panels/WeeklyActivityPanel.qml
+RootStore 1.0 stores/RootStore.qml

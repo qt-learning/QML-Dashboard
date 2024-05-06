@@ -1,0 +1,5 @@
+module popups
+NewReminderPopup 1.0 NewReminderPopup.qml
+NewTaskPopup 1.0 NewTaskPopup.qml
+NewOrReplyEmailPopup 1.0 NewOrReplyEmailPopup.qml
+Popups 1.0 Popups.qml

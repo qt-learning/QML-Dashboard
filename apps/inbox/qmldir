@@ -1,0 +1,6 @@
+module inbox
+Main 1.0 Main.qml
+InboxView 1.0 views/InboxView.qml
+InboxViewDelegate 1.0 controls/InboxViewDelegate.qml
+RootStore 1.0 stores/RootStore.qml
+EmailsListModel 1.0 stores/EmailsListModel.qml

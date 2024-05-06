@@ -1,0 +1,5 @@
+module calendar
+Main 1.0 Main.qml
+TasksListView 1.0 views/TasksListView.qml
+CalendarPanel 1.0 panels/CalendarPanel.qml
+RootStore 1.0 stores/RootStore.qml

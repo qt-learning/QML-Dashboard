@@ -1,0 +1,7 @@
+module mainui
+Header 1.0 home/Header.qml
+Dashboard 1.0 home/Dashboard.qml
+HomePage 1.0 home/HomePage.qml
+MainMenu 1.0 mainmenu/MainMenu.qml
+MainMenuList 1.0 mainmenu/MainMenuList.qml
+UserInfo 1.0 mainmenu/UserInfo.qml
