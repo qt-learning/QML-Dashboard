@@ -1,0 +1,13 @@
+/.qmake.cache
+/.qmake.stash
+*.pro.user
+*.pro.user.*
+*.qmlproject.user
+*.qmlproject.user*
+CMakeLists.txt.user
+CMakeLists.txt.user*
+.DS_Store
+*.qmlc
+*.jsc
+.build/
+imports/com/

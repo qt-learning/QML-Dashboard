@@ -1,0 +1,10 @@
+module webradio
+Main 1.0 Main.qml
+Object3DPanel 1.0 panels/Object3DPanel.qml
+RadioControlsPanel 1.0 panels/RadioControlsPanel.qml
+RadioView 1.0 views/RadioView.qml
+RadioStationsView 1.0 views/RadioStationsView.qml
+RadioStationLogo 1.0 controls/RadioStationLogo.qml
+RadioStationDelegate 1.0 controls/RadioStationDelegate.qml
+RootStore 1.0 stores/RootStore.qml
+WebRadioStationsModel 1.0 stores/WebRadioStationsModel.qml

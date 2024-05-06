@@ -1,0 +1,5 @@
+module latestnews
+Main 1.0 Main.qml
+CategoriesPanel 1.0 panels/CategoriesPanel.qml
+NewsItemsView 1.0 views/NewsItemsView.qml
+RootStore 1.0 stores/RootStore.qml
