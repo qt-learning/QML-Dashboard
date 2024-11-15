@@ -18,6 +18,9 @@ ApplicationWindow {
         HomePage {
             id: dashboardAppContent
             anchors.fill: parent
+            onOpenReplyPopup: function(isReply, sender, subject) {
+                popups.openReplyPopup(isReply, sender, subject);
+            }
         }
         //Popups
         Popups {

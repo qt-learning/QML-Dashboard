@@ -5,6 +5,8 @@ import mainui
 Item {
     id: root
 
+    signal openReplyPopup(bool isReply, string sender, string subject)
+
     Header {
         id: header
         width: (parent.width - mainMenu.width)
@@ -19,6 +21,9 @@ Item {
         id: mainMenu
         width: Style.resize(285)
         height: parent.height
+        onMenuItemClicked: function (name) {
+            mainContent.state = name;
+        }
     }
 
     Dashboard {
@@ -27,5 +32,8 @@ Item {
         height: (parent.height - header.height)
         anchors.left: mainMenu.right
         anchors.top: header.bottom
+        onOpenReplyPopup: function(isReply, sender, subject) {
+            root.openReplyPopup(isReply, sender, subject);
+        }
     }
 }

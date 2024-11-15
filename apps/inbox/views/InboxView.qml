@@ -14,6 +14,7 @@ Item {
     property bool fullSize
     property string mailMonth
     property alias model: listView.model
+    signal openReplyPopup(bool isReply, string sender, string subject)
 
     Column {
         id: contentColumn
@@ -30,7 +31,9 @@ Item {
         Frame {
             width: parent.width
             height: Style.resize((100 * listView.count) + 40)
-            //background:
+            background: BaseCard {
+                visible: root.fullSize
+            }
             contentItem: Item {
                 anchors.fill: parent
                 anchors {
@@ -47,6 +50,12 @@ Item {
                     interactive: false
                     delegate: InboxViewDelegate {
                         fullSize: root.fullSize
+                        onExpandChanged: {
+                            listView.interactive = expand;
+                        }
+                        onReplyButtonClicked: function(isReply, sender, subject) {
+                            root.openReplyPopup(isReply, sender, subject);
+                        }
                     }
                 }
             }

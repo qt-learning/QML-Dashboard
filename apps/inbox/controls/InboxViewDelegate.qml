@@ -8,15 +8,24 @@ import controls
 ItemDelegate {
     id: root
     width: parent.width
-    height: root.fullSize ? Style.resize(100) : Style.resize(95)
+    height: root.fullSize ? Style.resize(100 + (root.expand ?
+            (mailContentItemLabel.height + Style.resize(20)) : 0)) : Style.resize(95)
     Behavior on height { NumberAnimation { duration: 50 } }
 
+    property bool expand: false
     property bool fullSize
+
+    signal replyButtonClicked(bool isReply, string sender, string subject)
 
     background: null
     contentItem: Item {
         anchors.fill: parent
-        // ADD Separator
+        Separator {
+            width: (parent.width - Style.resize(20))
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+        }
+
         RowLayout {
             anchors.fill: parent
             anchors.verticalCenter: parent.verticalCenter
@@ -58,11 +67,11 @@ ItemDelegate {
                 Label {
                     id: mailContentItemLabel
                     width: parent.width - Style.resize(20)
-                    height: Style.resize(14)
+                    height: root.expand ? contentHeight : Style.resize(14)
                     font.pixelSize: Style.fontSizeS
                     color: Style.fontSecondaryColor
-                    elide: Text.ElideRight
-                    wrapMode: Text.NoWrap
+                    elide: root.expand ? Text.ElideNone : Text.ElideRight
+                    wrapMode: root.expand ? Text.WordWrap : Text.NoWrap
                     text: content
                 }
             }
@@ -82,13 +91,17 @@ ItemDelegate {
                 visible: root.fullSize
                 text: qsTr("Reply")
                 icon.source: Style.icon("reply")
+                onClicked: {
+                    root.replyButtonClicked(true, sender, subject);
+                }
             }
             Image {
                 id: expandIcon
                 width: Style.resize(14)
                 height: Style.resize(14)
                 anchors.centerIn: parent
-                visible: (root.fullSize && mailContentItemLabel.truncated)
+                visible: (root.fullSize && (mailContentItemLabel.truncated || root.expand))
+                rotation: root.expand ? 180 : 0
                 Behavior on rotation { NumberAnimation { duration: 300 }}
                 source: Style.icon("expand")
             }
@@ -97,5 +110,8 @@ ItemDelegate {
 
     onClicked: {
         ListView.view.currentIndex = index;
+        if (expandIcon.visible) {
+            root.expand = !root.expand;
+        }
     }
 }

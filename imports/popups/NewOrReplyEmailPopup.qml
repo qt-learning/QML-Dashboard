@@ -21,6 +21,7 @@ Popup {
             topMargin: Style.resize(40)
             bottomMargin: Style.resize(40)
         }
+
         Item {
             id: emailAddressItem
             width: parent.width
