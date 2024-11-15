@@ -11,6 +11,8 @@ Item {
         height: Style.resize(70)
         anchors.left: mainMenu.right
         z: 10000
+        menuItemText: mainMenu.currentItemName
+        reorderSwitchVisible: (mainMenu.currentItemName === "Dashboard")
     }
 
     MainMenu {

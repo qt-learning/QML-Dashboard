@@ -5,6 +5,9 @@ import utils
 Item {
     id: root
 
+    property string currentItemName: mainMenuList.currentItemName
+    signal menuItemClicked(var name)
+
     Rectangle {
         id: userInfoBg
         width: parent.width
@@ -21,11 +24,18 @@ Item {
         MainMenuList {
             id: mainMenuList
             anchors.centerIn: parent
+            onMenuItemClicked: function(name) {
+                root.menuItemClicked(name);
+            }
         }
     }
 
     UserInfo {
         anchors.top: userInfoBg.top
         anchors.topMargin: -Style.resize(38)
+        icon: Style.gfx("user")
+        name: "John Doe"
+        address: qsTr("Barcelona, Spain")
+        status: qsTr("Student")
     }
 }
