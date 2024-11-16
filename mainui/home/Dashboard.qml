@@ -6,6 +6,7 @@ import utils
 import inbox as Inbox
 import calendar as Calendar
 import courses as Courses
+import latestnews as LatestNews
 
 Item {
     id: root
@@ -41,5 +42,10 @@ Item {
         onOpenNewReminderPopup: {
             root.openNewReminderPopup();
         }
+    }
+
+    LatestNews.Main {
+        visible: fullSize
+        fullSize: (root.state === "Latest News")
     }
 }

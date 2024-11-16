@@ -11,7 +11,9 @@ Frame {
     clip: true
 
     property bool fullSize
-    property RootStore rootStore: RootStore { }
+    property RootStore rootStore: RootStore {
+        selectedCategory: categoriesView.selectedCategoryIndex
+    }
 
     background: BaseCard { }
 
@@ -37,6 +39,7 @@ Frame {
             width: visible ? parent.width : 0
             height: visible ? Style.resize(60) : 0
             visible: root.fullSize
+            model: root.rootStore.categoriesModel
         }
 
         NewsItemsView {

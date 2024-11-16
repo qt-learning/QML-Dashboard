@@ -6,6 +6,9 @@ import utils
 Item {
     id: root
 
+    property alias model: listView.model
+    property int selectedCategoryIndex: listView.currentIndex
+
     ListView {
         id: listView
         width: parent.width
