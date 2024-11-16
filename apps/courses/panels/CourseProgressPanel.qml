@@ -54,9 +54,21 @@ Frame {
             anchors.topMargin: Style.resize(50)
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: Style.resize(10)
-            CircularBar { }
-            CircularBar { }
-            CircularBar { }
+            CircularBar {
+                fillColor: "#00D1A8"
+                text: qsTr("Due %1%").arg((value*100).toFixed(0))
+                value: 1
+            }
+            CircularBar {
+                fillColor: "#FFE361"
+                text: qsTr("Due %1%").arg((value*100).toFixed(0))
+                value: .25
+            }
+            CircularBar {
+                fillColor: "#FF5900"
+                text: qsTr("Due %1%").arg((value*100).toFixed(0))
+                value: 1
+            }
         }
     }
 }

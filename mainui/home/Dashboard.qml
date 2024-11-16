@@ -5,6 +5,7 @@ import utils
 
 import inbox as Inbox
 import calendar as Calendar
+import courses as Courses
 
 Item {
     id: root
@@ -31,6 +32,14 @@ Item {
         }
         onOpenNewTaskPopup: function(selectedDate) {
             root.openNewTaskPopup(selectedDate);
+        }
+    }
+
+    Courses.Main {
+        visible: fullSize
+        fullSize: (root.state === "Courses")
+        onOpenNewReminderPopup: {
+            root.openNewReminderPopup();
         }
     }
 }
