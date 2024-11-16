@@ -5,6 +5,8 @@ import mainui
 Item {
     id: root
 
+    signal openNewReminderPopup()
+    signal openNewTaskPopup(var selectedDate)
     signal openReplyPopup(bool isReply, string sender, string subject)
 
     Header {
@@ -32,6 +34,12 @@ Item {
         height: (parent.height - header.height)
         anchors.left: mainMenu.right
         anchors.top: header.bottom
+        onOpenNewReminderPopup: function() {
+            root.openNewReminderPopup();
+        }
+        onOpenNewTaskPopup: function(selectedDate) {
+            root.openNewTaskPopup(selectedDate);
+        }
         onOpenReplyPopup: function(isReply, sender, subject) {
             root.openReplyPopup(isReply, sender, subject);
         }

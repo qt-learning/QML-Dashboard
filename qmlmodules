@@ -21,5 +21,6 @@ target_link_libraries(QDashboardApp PRIVATE
     latestnewsplugin
     webradioplugin
     mainuiplugin
+    commonstoresplugin
     viewsplugin
 )

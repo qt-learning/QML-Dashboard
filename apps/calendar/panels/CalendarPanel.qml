@@ -9,6 +9,16 @@ Frame {
     id: root
 
     property bool fullSize
+    property var reminderData
+    property var currentDate: new Date()
+    property var selectedDate: root.currentDate
+    property int currentMonth: root.currentDate.getMonth()
+
+    function resetCalendar() {
+        root.selectedDate = root.currentDate;
+        calendarList.currentIndex = root.currentMonth;
+        calendarList.positionViewAtIndex(calendarList.currentIndex, ListView.Beginning);
+    }
 
     background: BaseCard { }
 
@@ -49,6 +59,8 @@ Frame {
             orientation: ListView.Horizontal
             clip: true
             model: 12
+            highlightMoveDuration: 1
+            highlightRangeMode: ListView.StrictlyEnforceRange
 
             delegate: Item {
                 width: Style.resize(410)
@@ -63,7 +75,7 @@ Frame {
                         Layout.preferredHeight: Style.resize(46)
                         Label {
                             font.pixelSize: Style.fontSizeL
-                            text: " " /* TODO monthName+year */
+                            text: Qt.locale().standaloneMonthName(index) + " " + monthGrid.year
                             color: root.fullSize ? Style.fontPrimaryColor : Style.mainColor
                         }
                         Item {
@@ -78,14 +90,14 @@ Frame {
                             icon.source: Style.icon("left")
                             opacity: (calendarList.currentIndex > 0) ? 1 : 0
                             Behavior on opacity { NumberAnimation {}}
-                            onClicked: { /* TODO decrement calendar month */ }
+                            onClicked: { calendarList.decrementCurrentIndex(); }
                         }
 
                         Button {
                             Layout.preferredWidth: Style.resize(80)
                             Layout.preferredHeight: Style.resize(30)
                             text: qsTr("Today")
-                            onClicked: { /* TODO reset calendar */ }
+                            onClicked: { root.resetCalendar(); }
                         }
 
                         ToolButton {
@@ -93,10 +105,76 @@ Frame {
                             Layout.preferredHeight: Style.resize(27)
                             icon.color: undefined
                             icon.source: Style.icon("right")
-                            onClicked: { /* TODO increment calendar month */ }
+                            onClicked: { calendarList.incrementCurrentIndex(); }
+                        }
+                    }
+
+                    DayOfWeekRow {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: Style.resize(35)
+                        spacing: Style.resize(6)
+                        topPadding: Style.resize(6)
+                        bottomPadding: Style.resize(6)
+                        locale: Qt.locale()
+                        delegate: Item {
+                            width: parent.width
+                            height: Style.resize(20)
+                            Label {
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                color: Style.inactiveColor
+                                text: model.shortName
+                            }
+                        }
+                    }
+
+                    MonthGrid {
+                        id: monthGrid
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        spacing: Style.resize(6)
+                        locale: Qt.locale()
+                        month: index
+                        delegate: Item {
+                            width: Style.resize(40)
+                            height: Style.resize(40)
+
+                            Rectangle {
+                                id: highlight
+                                width: Style.resize(37)
+                                height: Style.resize(37)
+                                anchors.centerIn: parent
+                                radius: (width/2)
+                                color: Style.mainColor
+                                visible: (!!root.selectedDate && (Qt.formatDate(root.selectedDate,"ddd MMM d yyyy")
+                                         === Qt.formatDate(model.date,"ddd MMM d yyyy")))
+                            }
+
+                            Label {
+                                id: dayNameLabel
+                                anchors.centerIn: parent
+                                text: model.day
+                                color: highlight.visible ? Style.fontContrastColor : Style.fontSecondaryColor
+                            }
+
+                            Rectangle {
+                                width: Style.resize(8)
+                                height: Style.resize(8)
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                anchors.top: dayNameLabel.bottom
+                                radius: (width/2)
+                                property var delegateDate: (model.date.toString().substring(8,10) + model.date.toString().substring(4, 7)).replace(/\s/g,"")
+                                visible: root.reminderData.includes(delegateDate)
+                                color: visible ? root.reminderData[root.reminderData.indexOf(delegateDate)+1] : "transparent"
+                            }
+                        }
+                        onClicked: function(date) {
+                            root.selectedDate = date;
                         }
                     }
                 }
+            }
+            Component.onCompleted: {
+                root.resetCalendar();
             }
         }
     }

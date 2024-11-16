@@ -24,10 +24,13 @@ Row {
         width: Style.resize(529)
         height: Style.resize(455)
         fullSize: root.fullSize
+        reminderData: root.rootStore.reminderData
     }
 
     TasksListView {
         visible: root.fullSize
+        rootStore: root.rootStore
+        calendarSelectedDate: calendarComponent.selectedDate
         onOpenNewTaskPopup: function(selectedDate) {
             root.openNewTaskPopup(selectedDate);
         }
@@ -38,6 +41,7 @@ Row {
         height: Style.resize(455)
         anchors.margins: Style.resize(15)
         visible: root.fullSize
+        rootStore: root.rootStore
         onOpenNewReminderPopup: function() {
             root.openNewReminderPopup();
         }

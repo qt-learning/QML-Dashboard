@@ -4,6 +4,7 @@ import QtQuick.Controls
 import utils
 import popups
 import mainui
+import commonstores
 
 ApplicationWindow {
     id: root
@@ -18,6 +19,12 @@ ApplicationWindow {
         HomePage {
             id: dashboardAppContent
             anchors.fill: parent
+            onOpenNewReminderPopup: function() {
+                popups.openNewReminderPopup();
+            }
+            onOpenNewTaskPopup: function(selectedDate) {
+                popups.openNewTaskPopup(selectedDate);
+            }
             onOpenReplyPopup: function(isReply, sender, subject) {
                 popups.openReplyPopup(isReply, sender, subject);
             }
@@ -25,6 +32,12 @@ ApplicationWindow {
         //Popups
         Popups {
             id: popups
+            onNewTaskAdded: function(even, time, title) {
+                Store.addNewTask(even, time, title);
+            }
+            onNewReminderAdded: function(day, month, description, color) {
+                Store.addNewReminder(day, month, description, color);
+            }
         }
     }
 }

@@ -41,7 +41,7 @@ Frame {
             font.pixelSize: Style.fontSizeL
             color: Style.mainColor
             font.family: Style.fontFamilyBold
-            text: " " //TODO day number & month
+            text: !!root.calendarSelectedDate ? Qt.formatDate(root.calendarSelectedDate, "dd MMM") : ""
         }
 
         Item {
@@ -51,7 +51,7 @@ Frame {
             ListView {
                 id: listView
                 anchors.fill: parent
-                //model:
+                model: root.rootStore.filterTasksModel(root.calendarSelectedDate.getDate())
                 delegate: ItemDelegate {
                     width: (parent.width - Style.resize(5))
                     height: Style.resize(60)
@@ -80,6 +80,9 @@ Frame {
                             Layout.preferredHeight: Style.resize(32)
                             Layout.alignment: Qt.AlignRight
                             icon.source: Style.icon("close")
+                            onClicked: {
+                                root.rootStore.removeTask(root.calendarSelectedDate.getDate(), index);
+                            }
                         }
                     }
 

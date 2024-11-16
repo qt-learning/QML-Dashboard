@@ -1,4 +1,5 @@
 add_subdirectory(utils)
+add_subdirectory(commonstores)
 add_subdirectory(controls)
 add_subdirectory(views)
 add_subdirectory(popups)

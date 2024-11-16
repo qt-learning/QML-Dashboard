@@ -10,5 +10,6 @@ Q_IMPORT_QML_PLUGIN(inboxPlugin)
 Q_IMPORT_QML_PLUGIN(latestnewsPlugin)
 Q_IMPORT_QML_PLUGIN(webradioPlugin)
 Q_IMPORT_QML_PLUGIN(mainuiPlugin)
+Q_IMPORT_QML_PLUGIN(commonstoresPlugin)
 Q_IMPORT_QML_PLUGIN(viewsPlugin)
 
