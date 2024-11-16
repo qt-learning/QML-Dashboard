@@ -12,6 +12,7 @@ Frame {
     height: Style.resize(455)
 
     property bool fullSize
+    property var animator
     property var rootStore
 
     background: BaseCard { }
@@ -33,6 +34,7 @@ Frame {
             Layout.preferredWidth: Style.resize(130)
             Layout.preferredHeight: Style.resize(130)
             Layout.alignment: Qt.AlignHCenter
+            imageSource: root.rootStore.getStationLogo()
         }
 
         Label {
@@ -43,12 +45,15 @@ Frame {
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             color: Style.fontSecondaryColor
+            text: root.rootStore.getStationName()
         }
 
         Label {
             Layout.preferredHeight: Style.resize(25)
             Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: -Style.resize(10)
+            opacity: root.rootStore.mediaError ? 1.0 : 0.0
+            Behavior on opacity { NumberAnimation { duration: 200 } }
             font.family: Style.fontFamilyBold
             font.pixelSize: Style.fontSizeL
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -58,6 +63,32 @@ Frame {
 
         RadioControlsPanel {
             Layout.alignment: Qt.AlignHCenter
+            playbackStatePlaying: root.rootStore.playbackStatePlaying
+            onPlayPauseClicked: {
+                if (root.rootStore.playbackStatePlaying) {
+                    root.rootStore.stop();
+                } else {
+                    root.rootStore.play();
+                    if (root.fullSize) {
+                        root.animator.running = true;
+                    }
+                }
+            }
+            onPreviousClicked: {
+                root.rootStore.previousStation();
+                if (root.fullSize) {
+                    root.animator.running = true;
+                }
+            }
+            onNextClicked: {
+                root.rootStore.nextStation();
+                if (root.fullSize) {
+                    root.animator.running = true;
+                }
+            }
+            onStopClicked: {
+                root.rootStore.stop();
+            }
         }
 
         RowLayout {
@@ -76,6 +107,9 @@ Frame {
                 from: 0
                 to: 1
                 value: 1
+                onValueChanged: {
+                    root.rootStore.volume = value;
+                }
             }
         }
     }

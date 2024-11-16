@@ -15,6 +15,7 @@ Item {
         id: radioControls
         anchors.left: root.fullSize ? parent.left : undefined
         anchors.leftMargin: root.fullSize ? Style.resize(20) : 0
+        animator: musicNote3D.animator
         fullSize: root.fullSize
         rootStore: root.rootStore
     }
@@ -33,6 +34,8 @@ Item {
     RadioStationsView {
         id: radioStationsGrid
         visible: root.fullSize
+        animator: musicNote3D.animator
         rootStore: root.rootStore
+        fullSize: root.fullSize
     }
 }

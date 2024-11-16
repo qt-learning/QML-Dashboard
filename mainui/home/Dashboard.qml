@@ -7,6 +7,7 @@ import inbox as Inbox
 import calendar as Calendar
 import courses as Courses
 import latestnews as LatestNews
+import webradio as WebRadio
 
 Item {
     id: root
@@ -47,5 +48,10 @@ Item {
     LatestNews.Main {
         visible: fullSize
         fullSize: (root.state === "Latest News")
+    }
+
+    WebRadio.Main {
+        visible: fullSize
+        fullSize: (root.state === "Web Radio")
     }
 }
