@@ -1,8 +1,8 @@
 qt_add_resources(QDashboardApp "assets"
     PREFIX "/assets"
     FILES
-        icons/left.png
-        icons/right.png
+        icons/Left.png
+        icons/Right.png
         icons/close.png
         icons/onoff.png
         icons/settings.png
@@ -51,3 +51,4 @@ qt_add_resources(QDashboardApp "assets"
         fonts/Quicksand_Bold.otf
         fonts/Quicksand_Book.otf
 )
+
