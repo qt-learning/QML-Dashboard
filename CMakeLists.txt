@@ -6,6 +6,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick QuickControls2)
 
+set(QML_IMPORT_PATH
+    ${CMAKE_CURRENT_LIST_DIR}/imports
+    ${CMAKE_CURRENT_LIST_DIR}/apps
+    CACHE STRING "" FORCE
+)
+
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(QDashboardApp src/main.cpp)
