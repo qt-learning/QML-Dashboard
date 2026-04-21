@@ -1,3 +1,6 @@
+# Copyright (C) 2026 Qt Group and its licensors.
+# SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GPL-3.0-only
+
 qt_add_library(webradio STATIC)
 qt_add_qml_module(webradio
     URI "webradio"
