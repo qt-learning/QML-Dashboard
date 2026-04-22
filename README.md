@@ -15,14 +15,14 @@ This repository contains a modular dashboard application built with Qt 6, QML, a
 
 ⭐ Skill Level: Intermediate
 
-⏱️ Time to Complete: 70 minutes
+⏱️ Time to Complete: 7-10 hours
 
 
 ## Instructions
 
-To get started with this project, you will need to have Qt Design Studio installed on your computer. You can download Qt Design Studio from the [Qt.io website](qt.io). TODO
+To get started with this project, you will need to have Qt Creator installed on your computer. You can download Qt Creator from the [Qt.io website](qt.io).
 
-Once you have Qt and Qt Design Studio installed, head over to [Qt Academy](academy.qt.io) and follow along to create the project template and add the assets to the project.TODO
+Once you have Qt and Qt Creator installed, head over to [Qt Academy](academy.qt.io) and follow along to create the project template and add the assets to the project.
 
 ## Resources
 
@@ -55,3 +55,6 @@ This software package may provide links or access to third party libraries or co
 
 - The [Quicksand](imports/assets/fonts) font family was created by Andrew Paglinawan and is licensed under the [SIL Open Font License](/LICENSES/OFL.txt).
 
+#### Images
+
+The radio station logos in `imports/assets/images/radio_stations` belong to the respective owners.
